@@ -32,6 +32,13 @@ namespace ProNaturGmbH
             if (loadingProgressValue >= prbLoading.Maximum ) { 
                 
                 timLoadingBar.Stop(); 
+
+                //create new MainMenueScreen Object and show it
+                MainMenueScreen mainMenueScreen = new MainMenueScreen();
+                mainMenueScreen.Show();
+
+                //hide loadingScreen
+                this.Hide();
             }
         }
 

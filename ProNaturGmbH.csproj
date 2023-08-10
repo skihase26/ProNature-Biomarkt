@@ -52,10 +52,28 @@
     <Compile Include="LoadingScreen.Designer.cs">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainMenueScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenueScreen.Designer.cs">
+      <DependentUpon>MainMenueScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductsScreen.Designer.cs">
+      <DependentUpon>ProductsScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LoadingScreen.resx">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenueScreen.resx">
+      <DependentUpon>MainMenueScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductsScreen.resx">
+      <DependentUpon>ProductsScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
