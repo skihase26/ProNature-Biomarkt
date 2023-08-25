@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenueScreen));
             this.btnProducts = new System.Windows.Forms.Button();
             this.btnBill = new System.Windows.Forms.Button();
+            this.btnCustomers = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProducts
@@ -58,12 +59,26 @@
             this.btnBill.Text = "Rechnung erstellen";
             this.btnBill.UseVisualStyleBackColor = true;
             // 
+            // btnCustomers
+            // 
+            this.btnCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomers.ForeColor = System.Drawing.Color.White;
+            this.btnCustomers.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomers.Image")));
+            this.btnCustomers.Location = new System.Drawing.Point(614, 12);
+            this.btnCustomers.Name = "btnCustomers";
+            this.btnCustomers.Size = new System.Drawing.Size(275, 125);
+            this.btnCustomers.TabIndex = 2;
+            this.btnCustomers.Text = "Kunden";
+            this.btnCustomers.UseVisualStyleBackColor = true;
+            this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
+            // 
             // MainMenueScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.ClientSize = new System.Drawing.Size(606, 149);
+            this.ClientSize = new System.Drawing.Size(900, 149);
+            this.Controls.Add(this.btnCustomers);
             this.Controls.Add(this.btnBill);
             this.Controls.Add(this.btnProducts);
             this.Name = "MainMenueScreen";
@@ -77,5 +92,6 @@
 
         private System.Windows.Forms.Button btnProducts;
         private System.Windows.Forms.Button btnBill;
+        private System.Windows.Forms.Button btnCustomers;
     }
 }

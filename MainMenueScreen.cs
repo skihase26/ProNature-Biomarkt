@@ -24,5 +24,13 @@ namespace ProNaturGmbH
 
             this.Hide();
         }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            CustomerScreen customerScreen = new CustomerScreen();
+            customerScreen.Show();
+
+            this.Hide();
+        }
     }
 }

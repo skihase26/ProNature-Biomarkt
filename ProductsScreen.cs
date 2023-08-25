@@ -12,71 +12,109 @@ using System.Windows.Forms;
 
 namespace ProNaturGmbH
 {
+    /// <summary>
+    /// form to handle the products of the products table, where you can create, update or delete a product
+    /// and show you all products 
+    /// </summary>
     public partial class ProductsScreen : Form
     {
-        private SqlConnection databaseConnection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\Gaby\OneDrive\Dokumente\Pro-Natur Biomarkt GmbH.mdf;Integrated Security = True; Connect Timeout = 30");
+  
+        private int lastSelectedProductKey;
+        private readonly DatabaseTools databaseTools;
 
         public ProductsScreen()
         {
             InitializeComponent();
+            databaseTools = new DatabaseTools();
             UpdateGridView();
             
         }
 
+        /// <summary>
+        /// fill the gridview with actual datas from table products
+        /// </summary>
         private void UpdateGridView()
         {
-            databaseConnection.Open();
-
-            string query = "select * from Products";
-
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, databaseConnection);
-
-            DataSet dataSet = new DataSet();
-            sqlDataAdapter.Fill(dataSet);
+            //get all datas from the products table and fill the datagridview
+            DataSet dataSet = databaseTools.GetDataSet("products");
             dgvProducts.DataSource = dataSet.Tables[0];
 
+            //hide the id column
             dgvProducts.Columns[0].Visible = false;
-
-
-            databaseConnection.Close();
         }
 
+        /// <summary>
+        /// save the datas from the textfields in the products table, 
+        /// when all fields are filled with datas 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveProduct_Click(object sender, EventArgs e)
         {
-            string productName = tboProductName.Text;
-            string productBrand = tboProductBrand.Text;
-            string productCategory = cboProductCategory.Text;
+            //proof the textfields, when one field is empty, the method return without saving
+            if (tboProductName.Text == "" || tboProductBrand.Text == "" || tboProductPrice.Text == "" || cboProductCategory.Text == "")
+            {
+                MessageBox.Show("Bitte alle Felder ausfüllen!");
+                return;
+            }
+
+            string[] updateInfos = GetDataFromTextfields();
             float productPrice = float.Parse(tboProductPrice.Text);
 
-            string query = string.Format("insert into products values('{0}', '{1}', '{2}', @productPrice)", productName, productBrand, productCategory);
-                        
-            databaseConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand(query, databaseConnection);
-           
-            sqlCommand.Parameters.AddWithValue("@productPrice", productPrice);
-            sqlCommand.ExecuteNonQuery();
-            databaseConnection.Close();
+            //save the datas in the products table
+            databaseTools.SaveData(lastSelectedProductKey, "products", updateInfos, productPrice);
+                      
             ClearAllFields();
             UpdateGridView();
         }
 
+        /// <summary>
+        /// update the datas in the products table from the selected product,
+        /// only when all fields are filled
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnChangeProduct_Click(object sender, EventArgs e)
         {
+            if (tboProductName.Text == "" || tboProductBrand.Text == "" || tboProductPrice.Text == "" || cboProductCategory.Text == "")
+            {
+                MessageBox.Show("Bitte alle Felder ausfüllen!");
+                return;
+            }
+            string[] updateInfos = GetDataFromTextfields();
+            float productPrice = float.Parse(tboProductPrice.Text);
+
+            databaseTools.UpdateData(lastSelectedProductKey, "products", updateInfos, productPrice);
 
             UpdateGridView();
         }
 
+        /// <summary>
+        /// clear only the fields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClearTextbox_Click(object sender, EventArgs e)
         {
             ClearAllFields();
         }
 
+        /// <summary>
+        /// delete the selected product, clear the fields and update the gridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
+            databaseTools.DeleteData(lastSelectedProductKey, "products");
+
             ClearAllFields();
             UpdateGridView();
         }
 
+        /// <summary>
+        /// clear the textfields and combobox
+        /// </summary>
         private void ClearAllFields()
         {
             tboProductName.Text = "";
@@ -84,6 +122,43 @@ namespace ProNaturGmbH
             tboProductPrice.Text = "";
             cboProductCategory.SelectedItem = null;
             cboProductCategory.Text = "";
+        }
+
+        /// <summary>
+        /// fill the textfields with datas from the selected content of the datagridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tboProductName.Text = dgvProducts.SelectedRows[0].Cells[1].Value.ToString();
+            tboProductBrand.Text = dgvProducts.SelectedRows[0].Cells[2].Value.ToString();
+            cboProductCategory.Text = dgvProducts.SelectedRows[0].Cells[3].Value.ToString();
+            tboProductPrice.Text = dgvProducts.SelectedRows[0].Cells[4].Value.ToString();
+
+            lastSelectedProductKey = (int)dgvProducts.SelectedRows[0].Cells[0].Value;
+            //Console.WriteLine(lastSelectedProductKey);
+        }
+
+        /// <summary>
+        /// get the datas from the textfields and put it into a string array
+        /// </summary>
+        /// <returns>textboxValues</returns>
+        private string[] GetDataFromTextfields()
+        {
+           
+            string[] textboxValues = new string[3];
+            textboxValues[0] = tboProductName.Text;
+            textboxValues[1] = tboProductBrand.Text;
+            textboxValues[2] = cboProductCategory.Text;
+
+            return textboxValues;
+        }
+
+        private void ProductsScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainMenueScreen mainMenueScreen = new MainMenueScreen();
+            mainMenueScreen.Show();
         }
     }
 }
