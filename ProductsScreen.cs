@@ -52,17 +52,13 @@ namespace ProNaturGmbH
         private void btnSaveProduct_Click(object sender, EventArgs e)
         {
             //proof the textfields, when one field is empty, the method return without saving
-            if (tboProductName.Text == "" || tboProductBrand.Text == "" || tboProductPrice.Text == "" || cboProductCategory.Text == "")
-            {
-                MessageBox.Show("Bitte alle Felder ausfüllen!");
-                return;
-            }
+            if (!proofAllFieldsFilled()) {return;}
 
             string[] updateInfos = GetDataFromTextfields();
             float productPrice = float.Parse(tboProductPrice.Text);
 
             //save the datas in the products table
-            databaseTools.SaveData(lastSelectedProductKey, "products", updateInfos, productPrice);
+            databaseTools.SaveData("products", updateInfos, productPrice);
                       
             ClearAllFields();
             UpdateGridView();
@@ -76,9 +72,8 @@ namespace ProNaturGmbH
         /// <param name="e"></param>
         private void btnChangeProduct_Click(object sender, EventArgs e)
         {
-            if (tboProductName.Text == "" || tboProductBrand.Text == "" || tboProductPrice.Text == "" || cboProductCategory.Text == "")
+            if (!proofAllFieldsFilled())
             {
-                MessageBox.Show("Bitte alle Felder ausfüllen!");
                 return;
             }
             string[] updateInfos = GetDataFromTextfields();
@@ -122,6 +117,17 @@ namespace ProNaturGmbH
             tboProductPrice.Text = "";
             cboProductCategory.SelectedItem = null;
             cboProductCategory.Text = "";
+            lastSelectedProductKey = -1;
+        }
+
+        private bool proofAllFieldsFilled()
+        {
+            if (tboProductName.Text == "" || tboProductBrand.Text == "" || tboProductPrice.Text == "" || cboProductCategory.Text == "" || float.Parse(tboProductPrice.Text) == 0)
+            {
+                MessageBox.Show("Bitte alle Felder ausfüllen und der Preis darf nicht 0 sein!");
+                return false;
+            }
+            else { return true; }
         }
 
         /// <summary>
@@ -155,6 +161,12 @@ namespace ProNaturGmbH
             return textboxValues;
         }
 
+
+        /// <summary>
+        /// if the form is closed, show the main menue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProductsScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
             MainMenueScreen mainMenueScreen = new MainMenueScreen();

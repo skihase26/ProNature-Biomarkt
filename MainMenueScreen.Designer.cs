@@ -84,6 +84,7 @@
             this.Name = "MainMenueScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hauptmenü";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainMenueScreen_FormClosed);
             this.ResumeLayout(false);
 
         }

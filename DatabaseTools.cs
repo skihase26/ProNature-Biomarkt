@@ -18,7 +18,7 @@ namespace ProNaturGmbH
         }
         
         /// <summary>
-        /// 
+        /// you get the connection of database
         /// </summary>
         /// <returns></returns>
         public SqlConnection GetConnection()
@@ -27,9 +27,9 @@ namespace ProNaturGmbH
         }
 
         /// <summary>
-        /// 
+        /// get the dataset of the table and return it
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="tableName"></param>
         /// <returns></returns>
         public DataSet GetDataSet(string tableName)
         {
@@ -47,7 +47,13 @@ namespace ProNaturGmbH
             return dataSet;
         }
 
-        public void SaveData(int id, string tableName, string[] dataToSave, float productPrice)
+        /// <summary>
+        /// insert the new dataset in the database
+        /// </summary>
+        /// <param name="tableName">table name of database</param>
+        /// <param name="dataToSave">data array (name, brand, category) inserting in the table</param>
+        /// <param name="productPrice"></param>
+        public void SaveData(string tableName, string[] dataToSave, float productPrice)
         {
             if (tableName == "products")
             {
@@ -56,6 +62,13 @@ namespace ProNaturGmbH
             }
         }
 
+        /// <summary>
+        /// update a data with id in the table
+        /// </summary>
+        /// <param name="id">the id of data</param>
+        /// <param name="tableName">where will update the data</param>
+        /// <param name="updateData">data array (name, brand, category) for updating</param>
+        /// <param name="productPrice"></param>
         public void UpdateData(int id, string tableName, string[] updateData, float productPrice)
         {
             if (tableName == "products")
@@ -66,6 +79,11 @@ namespace ProNaturGmbH
             }
         }
 
+        /// <summary>
+        /// delete the data in the named table with the id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="tableName"></param>
         public void DeleteData(int id, string tableName) {
 
             string query = string.Format("delete from {0} where Id ='{1}'",tableName, id);
@@ -73,11 +91,17 @@ namespace ProNaturGmbH
             ExecuteQuery(query, 0);
         }
 
+        /// <summary>
+        /// execute the query and get the data
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="productPrice"></param>
         private void ExecuteQuery(string query, float productPrice)
         {
             connection.Open();
             SqlCommand sqlCommand = new SqlCommand(query, connection);
 
+            // when there isn't an productPrice in the query, the productPrice will be 0
             if (productPrice != 0)
                 sqlCommand.Parameters.AddWithValue("@productPrice", productPrice);
 

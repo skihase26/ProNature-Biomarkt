@@ -155,7 +155,7 @@
             this.btnChangeCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangeCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnChangeCustomer.Location = new System.Drawing.Point(255, 161);
+            this.btnChangeCustomer.Location = new System.Drawing.Point(250, 161);
             this.btnChangeCustomer.Name = "btnChangeCustomer";
             this.btnChangeCustomer.Size = new System.Drawing.Size(117, 33);
             this.btnChangeCustomer.TabIndex = 9;
@@ -168,9 +168,9 @@
             this.btnClearCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnClearCustomer.Location = new System.Drawing.Point(384, 161);
+            this.btnClearCustomer.Location = new System.Drawing.Point(374, 161);
             this.btnClearCustomer.Name = "btnClearCustomer";
-            this.btnClearCustomer.Size = new System.Drawing.Size(117, 33);
+            this.btnClearCustomer.Size = new System.Drawing.Size(132, 33);
             this.btnClearCustomer.TabIndex = 10;
             this.btnClearCustomer.Text = "Felder leeren";
             this.btnClearCustomer.UseVisualStyleBackColor = false;

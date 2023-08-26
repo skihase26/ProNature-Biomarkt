@@ -32,5 +32,10 @@ namespace ProNaturGmbH
 
             this.Hide();
         }
+
+        private void MainMenueScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
