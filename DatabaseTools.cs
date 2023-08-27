@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProNaturGmbH
 {
@@ -58,7 +59,7 @@ namespace ProNaturGmbH
             if (tableName == "products")
             {
                 string query = string.Format("insert into {3} values('{0}', '{1}', '{2}', @productPrice)", dataToSave[0], dataToSave[1], dataToSave[2], tableName);
-                ExecuteQuery(query, productPrice);
+                BuildSqlCommand(query, productPrice);
             }
         }
 
@@ -75,7 +76,7 @@ namespace ProNaturGmbH
             {
                 string query = string.Format("update {4} set Name='{0}', Brand='{1}', Category='{2}', Price=@productPrice where Id={3}"
                     , updateData[0], updateData[1], updateData[2], id, tableName);
-                ExecuteQuery(query, productPrice);
+                BuildSqlCommand(query, productPrice);
             }
         }
 
@@ -88,7 +89,14 @@ namespace ProNaturGmbH
 
             string query = string.Format("delete from {0} where Id ='{1}'",tableName, id);
 
-            ExecuteQuery(query, 0);
+            BuildSqlCommand(query);
+        }
+
+        private void  BuildSqlCommand(string query)
+        {
+            
+            SqlCommand sqlCommand = new SqlCommand(query, connection);
+            ExecuteQuery(sqlCommand);
         }
 
         /// <summary>
@@ -96,17 +104,29 @@ namespace ProNaturGmbH
         /// </summary>
         /// <param name="query"></param>
         /// <param name="productPrice"></param>
-        private void ExecuteQuery(string query, float productPrice)
+        private void BuildSqlCommand(string query, float productPrice)
         {
-            connection.Open();
+           
             SqlCommand sqlCommand = new SqlCommand(query, connection);
 
-            // when there isn't an productPrice in the query, the productPrice will be 0
-            if (productPrice != 0)
-                sqlCommand.Parameters.AddWithValue("@productPrice", productPrice);
+            // replace the placeholder with the float of productPrice in the query
+            sqlCommand.Parameters.AddWithValue("@productPrice", productPrice);
+            ExecuteQuery(sqlCommand);
+        }
 
-            sqlCommand.ExecuteNonQuery();
-            connection.Close();
+        private void ExecuteQuery(SqlCommand sqlCommand)
+        {
+            try
+            {
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Die Daten konnten nicht in die Datenbank eingetragen werden. Bitte versuchen sie es noch einmal!");
+                Console.WriteLine(ex.Message);
+            }
+            finally { connection.Close(); }
+            
         }
     }
 }
