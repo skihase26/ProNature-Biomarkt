@@ -25,6 +25,7 @@ namespace ProNaturGmbH
         public ProductsScreen()
         {
             InitializeComponent();
+            lastSelectedProductKey = -1;
             databaseTools = new DatabaseTools();
             UpdateGridView();
             
@@ -54,44 +55,47 @@ namespace ProNaturGmbH
             //proof the textfields, when one field is empty, the method return without saving
             if (!proofAllFieldsFilled()) {return;}
 
-            string[] updateInfos = GetDataFromTextfields();
-            float productPrice = float.Parse(tboProductPrice.Text);
+            //If the lastSelectedProductKey is -1, then this is a new product
+            //else the product data has changed
+            if (lastSelectedProductKey < 0)
+            {
+                string[] updateInfos = GetDataFromTextfields();
+                float productPrice = float.Parse(tboProductPrice.Text);
 
-            //save the datas in the products table
-            databaseTools.SaveData("products", updateInfos, productPrice);
+                //save the datas in the products table
+                databaseTools.SaveData("products", updateInfos, productPrice);
+            } else
+            {
+                string[] updateInfos = GetDataFromTextfields();
+                float productPrice = float.Parse(tboProductPrice.Text);
+
+                databaseTools.UpdateData(lastSelectedProductKey, "products", updateInfos, productPrice);
+            }
                       
             ClearAllFields();
+            DisableFields();
             UpdateGridView();
         }
 
         /// <summary>
-        /// update the datas in the products table from the selected product,
-        /// only when all fields are filled
+        /// Enable the fields, so that values can be changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnChangeProduct_Click(object sender, EventArgs e)
         {
-            if (!proofAllFieldsFilled())
-            {
-                return;
-            }
-            string[] updateInfos = GetDataFromTextfields();
-            float productPrice = float.Parse(tboProductPrice.Text);
-
-            databaseTools.UpdateData(lastSelectedProductKey, "products", updateInfos, productPrice);
-
-            UpdateGridView();
+            EnableFields();
         }
 
         /// <summary>
-        /// clear only the fields
+        /// clear all fields and enable them
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnClearTextbox_Click(object sender, EventArgs e)
+        private void btnNewProduct_Click(object sender, EventArgs e)
         {
             ClearAllFields();
+            EnableFields();
         }
 
         /// <summary>
@@ -105,6 +109,22 @@ namespace ProNaturGmbH
 
             ClearAllFields();
             UpdateGridView();
+        }
+
+        private void EnableFields()
+        {
+            tboProductName.Enabled = true;
+            tboProductBrand.Enabled = true;
+            tboProductPrice.Enabled = true;
+            cboProductCategory.Enabled = true;
+        }
+
+        private void DisableFields()
+        {
+            tboProductName.Enabled = false;
+            tboProductBrand.Enabled = false;
+            tboProductPrice.Enabled = false;
+            cboProductCategory.Enabled = false;
         }
 
         /// <summary>
@@ -143,6 +163,7 @@ namespace ProNaturGmbH
             tboProductPrice.Text = dgvProducts.SelectedRows[0].Cells[4].Value.ToString();
 
             lastSelectedProductKey = (int)dgvProducts.SelectedRows[0].Cells[0].Value;
+            DisableFields();
             //Console.WriteLine(lastSelectedProductKey);
         }
 
@@ -172,5 +193,7 @@ namespace ProNaturGmbH
             MainMenueScreen mainMenueScreen = new MainMenueScreen();
             mainMenueScreen.Show();
         }
+
+        
     }
 }
