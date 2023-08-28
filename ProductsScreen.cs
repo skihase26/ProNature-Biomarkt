@@ -28,6 +28,7 @@ namespace ProNaturGmbH
             lastSelectedProductKey = -1;
             databaseTools = new DatabaseTools();
             UpdateGridView();
+            CboItemsLaden();
             
         }
 
@@ -196,8 +197,24 @@ namespace ProNaturGmbH
         {
             this.Hide();
             new CategoryScreen().ShowDialog();
-            this.Close();
+            this.Show();
+            CboItemsLaden();
 
+        }
+
+        private void CboItemsLaden()
+        {
+            DataSet dataSet = databaseTools.GetDataSet("categories");
+
+            cboProductCategory.DataSource = null;
+            cboProductCategory.Items.Clear();
+
+            if (dataSet.Tables[0].Rows.Count > 0)
+            {
+                cboProductCategory.DataSource = dataSet.Tables[0];
+                cboProductCategory.DisplayMember = "CategoryName";
+                cboProductCategory.ValueMember = "Id";
+            }
         }
     }
 }

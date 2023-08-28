@@ -67,7 +67,10 @@ namespace ProNaturGmbH
                     break;
 
                 case "customer": query = $"insert into {tableName} values('{dataToSave[0]}', '{dataToSave[1]}', '{dataToSave[2]}', '{dataToSave[3]}')";
-                    break;  
+                    break;
+
+                case "categories": query = $"insert into {tableName} values('{dataToSave[0]}')";
+                    break;
 
                 default: MessageBox.Show("Die Datenbanktabelle ist unbekannt. Daten konnten nicht gespeichert werden!");
                     return;
@@ -130,6 +133,8 @@ namespace ProNaturGmbH
 
                 connection.Open();
                 sqlCommand.ExecuteNonQuery();
+                MessageBox.Show("Die Daten wurden gespeichert.");
+
             }catch (Exception ex)
             {
                 MessageBox.Show("Die Daten konnten nicht in die Datenbank eingetragen werden. Bitte versuchen sie es noch einmal!");

@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryScreen));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tboCategoryName = new System.Windows.Forms.TextBox();
+            this.btnSaveCategory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -46,27 +46,28 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Kategorie:";
             // 
-            // textBox1
+            // tboCategoryName
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(109, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 26);
-            this.textBox1.TabIndex = 1;
+            this.tboCategoryName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.tboCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboCategoryName.ForeColor = System.Drawing.Color.White;
+            this.tboCategoryName.Location = new System.Drawing.Point(109, 25);
+            this.tboCategoryName.Name = "tboCategoryName";
+            this.tboCategoryName.Size = new System.Drawing.Size(168, 26);
+            this.tboCategoryName.TabIndex = 1;
             // 
-            // button1
+            // btnSaveCategory
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(51, 60);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 38);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Speichern";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSaveCategory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnSaveCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveCategory.ForeColor = System.Drawing.Color.White;
+            this.btnSaveCategory.Location = new System.Drawing.Point(51, 60);
+            this.btnSaveCategory.Name = "btnSaveCategory";
+            this.btnSaveCategory.Size = new System.Drawing.Size(188, 38);
+            this.btnSaveCategory.TabIndex = 2;
+            this.btnSaveCategory.Text = "Speichern";
+            this.btnSaveCategory.UseVisualStyleBackColor = false;
+            this.btnSaveCategory.Click += new System.EventHandler(this.btnSaveCategory_Click);
             // 
             // CategoryScreen
             // 
@@ -74,8 +75,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(289, 110);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnSaveCategory);
+            this.Controls.Add(this.tboCategoryName);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.Black;
             this.MaximizeBox = false;
@@ -90,7 +91,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox tboCategoryName;
+        private System.Windows.Forms.Button btnSaveCategory;
     }
 }
