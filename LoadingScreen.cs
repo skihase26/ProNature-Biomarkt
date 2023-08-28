@@ -23,13 +23,14 @@ namespace ProNaturGmbH
         {
             timLoadingBar.Start();
         }
+
         private void timLoadingBar_Tick(object sender, EventArgs e)
         {
             loadingProgressValue += 1;
             prbLoading.Value = loadingProgressValue;
-            lblLoading.Text = loadingProgressValue.ToString();
+            lblProzentAngabe.Text = loadingProgressValue.ToString() + " %";
 
-            if (loadingProgressValue >= prbLoading.Maximum ) { 
+            if (loadingProgressValue >= prbLoading.Maximum ) {
                 
                 timLoadingBar.Stop(); 
 

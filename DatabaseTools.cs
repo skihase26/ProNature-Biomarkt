@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,13 +56,25 @@ namespace ProNaturGmbH
         /// <param name="tableName">table name of database</param>
         /// <param name="dataToSave">data array (name, brand, category) inserting in the table</param>
         /// <param name="productPrice"></param>
-        public void SaveData(string tableName, string[] dataToSave, float productPrice)
+        public void SaveData(string tableName, string[] dataToSave, float productPrice=0)
         {
-            if (tableName == "products")
+            string query = "";
+            tableName = tableName.ToLower();
+
+            switch (tableName)
             {
-                string query = string.Format("insert into {3} values('{0}', '{1}', '{2}', @productPrice)", dataToSave[0], dataToSave[1], dataToSave[2], tableName);
-                BuildSqlCommand(query, productPrice);
+                case "products": query = $"insert into {tableName} values('{dataToSave[0]}', '{dataToSave[1]}', '{dataToSave[2]}', {productPrice.ToString(CultureInfo.InvariantCulture)})";
+                    break;
+
+                case "customer": query = $"insert into {tableName} values('{dataToSave[0]}', '{dataToSave[1]}', '{dataToSave[2]}', '{dataToSave[3]}')";
+                    break;  
+
+                default: MessageBox.Show("Die Datenbanktabelle ist unbekannt. Daten konnten nicht gespeichert werden!");
+                    return;
+                
             }
+
+            ExecuteQuery(query);
         }
 
         /// <summary>
@@ -70,14 +84,20 @@ namespace ProNaturGmbH
         /// <param name="tableName">where will update the data</param>
         /// <param name="updateData">data array (name, brand, category) for updating</param>
         /// <param name="productPrice"></param>
-        public void UpdateData(int id, string tableName, string[] updateData, float productPrice)
+        public void UpdateData(int id, string tableName, string[] updateData, float productPrice=0)
         {
-            if (tableName == "products")
+            string query = "";
+            switch (tableName)
             {
-                string query = string.Format("update {4} set Name='{0}', Brand='{1}', Category='{2}', Price=@productPrice where Id={3}"
-                    , updateData[0], updateData[1], updateData[2], id, tableName);
-                BuildSqlCommand(query, productPrice);
+                case "products": query = $"update {tableName} set Name='{updateData[0]}', Brand='{updateData[1]}', Category='{updateData[2]}', Price={productPrice.ToString(CultureInfo.InvariantCulture)} where Id={id}";
+                    break;
+                case "customer": query = $"update {tableName} set CostumerName='{updateData[0]}', CustomerFirstName='{updateData[1]}', Address='{updateData[2]}', Email='{updateData[3]}'";
+                    break;
+                default: MessageBox.Show("Die Datenbanktabelle ist unbekannt. Daten konnten nicht gespeichert werden!");
+                    return;
+
             }
+            ExecuteQuery(query);
         }
 
         /// <summary>
@@ -85,39 +105,29 @@ namespace ProNaturGmbH
         /// </summary>
         /// <param name="id"></param>
         /// <param name="tableName"></param>
-        public void DeleteData(int id, string tableName) {
-
-            string query = string.Format("delete from {0} where Id ='{1}'",tableName, id);
-
-            BuildSqlCommand(query);
-        }
-
-        private void  BuildSqlCommand(string query)
+        public void DeleteData(int id, string tableName)
         {
-            
-            SqlCommand sqlCommand = new SqlCommand(query, connection);
-            ExecuteQuery(sqlCommand);
+            string query = "";
+
+            tableName = tableName.ToLower();
+
+            switch (tableName) {
+                case "products": query = $"delete from {tableName} where Id ='{id}'";
+                    break;
+                case "customer": query = $"delete from {tableName} where CustomerId ='{id}'";
+                    break;
+            }
+            ExecuteQuery(query);
         }
 
-        /// <summary>
-        /// execute the query and get the data
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="productPrice"></param>
-        private void BuildSqlCommand(string query, float productPrice)
-        {
-           
-            SqlCommand sqlCommand = new SqlCommand(query, connection);
+       
 
-            // replace the placeholder with the float of productPrice in the query
-            sqlCommand.Parameters.AddWithValue("@productPrice", productPrice);
-            ExecuteQuery(sqlCommand);
-        }
-
-        private void ExecuteQuery(SqlCommand sqlCommand)
+        private void ExecuteQuery(string query)
         {
             try
             {
+                SqlCommand sqlCommand = new SqlCommand(query, connection);
+
                 connection.Open();
                 sqlCommand.ExecuteNonQuery();
             }catch (Exception ex)

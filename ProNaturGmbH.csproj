@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategoryScreen.Designer.cs">
+      <DependentUpon>CategoryScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CategoryScreen.resx">
+      <DependentUpon>CategoryScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerScreen.resx">
       <DependentUpon>CustomerScreen.cs</DependentUpon>
     </EmbeddedResource>

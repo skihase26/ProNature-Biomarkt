@@ -55,18 +55,18 @@ namespace ProNaturGmbH
             //proof the textfields, when one field is empty, the method return without saving
             if (!proofAllFieldsFilled()) {return;}
 
+            string[] updateInfos = GetDataFromTextfields();
+
             //If the lastSelectedProductKey is -1, then this is a new product
             //else the product data has changed
             if (lastSelectedProductKey < 0)
             {
-                string[] updateInfos = GetDataFromTextfields();
                 float productPrice = float.Parse(tboProductPrice.Text);
 
                 //save the datas in the products table
                 databaseTools.SaveData("products", updateInfos, productPrice);
             } else
             {
-                string[] updateInfos = GetDataFromTextfields();
                 float productPrice = float.Parse(tboProductPrice.Text);
 
                 databaseTools.UpdateData(lastSelectedProductKey, "products", updateInfos, productPrice);
@@ -111,6 +111,9 @@ namespace ProNaturGmbH
             UpdateGridView();
         }
 
+        /// <summary>
+        /// enable all fields
+        /// </summary>
         private void EnableFields()
         {
             tboProductName.Enabled = true;
@@ -119,6 +122,9 @@ namespace ProNaturGmbH
             cboProductCategory.Enabled = true;
         }
 
+        /// <summary>
+        /// disable all fields
+        /// </summary>
         private void DisableFields()
         {
             tboProductName.Enabled = false;
@@ -140,9 +146,13 @@ namespace ProNaturGmbH
             lastSelectedProductKey = -1;
         }
 
+        /// <summary>
+        /// proof the fields, that aren't allowed to be empty
+        /// </summary>
+        /// <returns></returns>
         private bool proofAllFieldsFilled()
         {
-            if (tboProductName.Text == "" || tboProductBrand.Text == "" || tboProductPrice.Text == "" || cboProductCategory.Text == "" || float.Parse(tboProductPrice.Text) == 0)
+            if (tboProductName.Text == "" || tboProductBrand.Text == "" || tboProductPrice.Text == "" || cboProductCategory.Text == "")
             {
                 MessageBox.Show("Bitte alle Felder ausfüllen und der Preis darf nicht 0 sein!");
                 return false;
@@ -182,18 +192,12 @@ namespace ProNaturGmbH
             return textboxValues;
         }
 
-
-        /// <summary>
-        /// if the form is closed, show the main menue
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ProductsScreen_FormClosed(object sender, FormClosedEventArgs e)
+        private void btnNewCategory_Click(object sender, EventArgs e)
         {
-            MainMenueScreen mainMenueScreen = new MainMenueScreen();
-            mainMenueScreen.Show();
-        }
+            this.Hide();
+            new CategoryScreen().ShowDialog();
+            this.Close();
 
-        
+        }
     }
 }

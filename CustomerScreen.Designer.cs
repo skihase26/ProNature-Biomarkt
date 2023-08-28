@@ -41,7 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSaveCustomer = new System.Windows.Forms.Button();
             this.btnChangeCustomer = new System.Windows.Forms.Button();
-            this.btnClearCustomer = new System.Windows.Forms.Button();
+            this.btnNewCustomer = new System.Windows.Forms.Button();
             this.btnDeleteCustomer = new System.Windows.Forms.Button();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
@@ -62,6 +62,7 @@
             // tboCustomerName
             // 
             this.tboCustomerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.tboCustomerName.Enabled = false;
             this.tboCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboCustomerName.ForeColor = System.Drawing.Color.White;
             this.tboCustomerName.Location = new System.Drawing.Point(126, 7);
@@ -72,6 +73,7 @@
             // tboFirstName
             // 
             this.tboFirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.tboFirstName.Enabled = false;
             this.tboFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboFirstName.ForeColor = System.Drawing.Color.White;
             this.tboFirstName.Location = new System.Drawing.Point(126, 43);
@@ -94,6 +96,7 @@
             // tboAddress
             // 
             this.tboAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.tboAddress.Enabled = false;
             this.tboAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboAddress.ForeColor = System.Drawing.Color.White;
             this.tboAddress.Location = new System.Drawing.Point(126, 75);
@@ -116,6 +119,7 @@
             // tboEmail
             // 
             this.tboEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.tboEmail.Enabled = false;
             this.tboEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboEmail.ForeColor = System.Drawing.Color.White;
             this.tboEmail.Location = new System.Drawing.Point(126, 107);
@@ -141,7 +145,7 @@
             this.btnSaveCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnSaveCustomer.Location = new System.Drawing.Point(126, 161);
+            this.btnSaveCustomer.Location = new System.Drawing.Point(267, 161);
             this.btnSaveCustomer.Name = "btnSaveCustomer";
             this.btnSaveCustomer.Size = new System.Drawing.Size(117, 33);
             this.btnSaveCustomer.TabIndex = 8;
@@ -155,25 +159,27 @@
             this.btnChangeCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangeCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnChangeCustomer.Location = new System.Drawing.Point(250, 161);
+            this.btnChangeCustomer.Location = new System.Drawing.Point(390, 161);
             this.btnChangeCustomer.Name = "btnChangeCustomer";
-            this.btnChangeCustomer.Size = new System.Drawing.Size(117, 33);
+            this.btnChangeCustomer.Size = new System.Drawing.Size(161, 33);
             this.btnChangeCustomer.TabIndex = 9;
-            this.btnChangeCustomer.Text = "Bearbeiten";
+            this.btnChangeCustomer.Text = "Kunde bearbeiten";
             this.btnChangeCustomer.UseVisualStyleBackColor = false;
+            this.btnChangeCustomer.Click += new System.EventHandler(this.btnChangeCustomer_Click);
             // 
-            // btnClearCustomer
+            // btnNewCustomer
             // 
-            this.btnClearCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.btnClearCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnClearCustomer.Location = new System.Drawing.Point(374, 161);
-            this.btnClearCustomer.Name = "btnClearCustomer";
-            this.btnClearCustomer.Size = new System.Drawing.Size(132, 33);
-            this.btnClearCustomer.TabIndex = 10;
-            this.btnClearCustomer.Text = "Felder leeren";
-            this.btnClearCustomer.UseVisualStyleBackColor = false;
+            this.btnNewCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnNewCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnNewCustomer.Location = new System.Drawing.Point(126, 161);
+            this.btnNewCustomer.Name = "btnNewCustomer";
+            this.btnNewCustomer.Size = new System.Drawing.Size(132, 33);
+            this.btnNewCustomer.TabIndex = 10;
+            this.btnNewCustomer.Text = "Neuer Kunde";
+            this.btnNewCustomer.UseVisualStyleBackColor = false;
+            this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
             // 
             // btnDeleteCustomer
             // 
@@ -181,12 +187,13 @@
             this.btnDeleteCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteCustomer.Location = new System.Drawing.Point(513, 161);
+            this.btnDeleteCustomer.Location = new System.Drawing.Point(557, 161);
             this.btnDeleteCustomer.Name = "btnDeleteCustomer";
-            this.btnDeleteCustomer.Size = new System.Drawing.Size(117, 33);
+            this.btnDeleteCustomer.Size = new System.Drawing.Size(137, 33);
             this.btnDeleteCustomer.TabIndex = 11;
-            this.btnDeleteCustomer.Text = "Löschen";
+            this.btnDeleteCustomer.Text = "Kunde löschen";
             this.btnDeleteCustomer.UseVisualStyleBackColor = false;
+            this.btnDeleteCustomer.Click += new System.EventHandler(this.btnDeleteCustomer_Click);
             // 
             // dgvCustomers
             // 
@@ -211,13 +218,16 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCustomers.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvCustomers.RowHeadersVisible = false;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             this.dgvCustomers.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomers.Size = new System.Drawing.Size(775, 243);
             this.dgvCustomers.TabIndex = 12;
+            this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
             // 
             // CustomerScreen
             // 
@@ -227,7 +237,7 @@
             this.ClientSize = new System.Drawing.Size(799, 461);
             this.Controls.Add(this.dgvCustomers);
             this.Controls.Add(this.btnDeleteCustomer);
-            this.Controls.Add(this.btnClearCustomer);
+            this.Controls.Add(this.btnNewCustomer);
             this.Controls.Add(this.btnChangeCustomer);
             this.Controls.Add(this.btnSaveCustomer);
             this.Controls.Add(this.tboEmail);
@@ -242,7 +252,6 @@
             this.Name = "CustomerScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kunden";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomerScreen_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -261,7 +270,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSaveCustomer;
         private System.Windows.Forms.Button btnChangeCustomer;
-        private System.Windows.Forms.Button btnClearCustomer;
+        private System.Windows.Forms.Button btnNewCustomer;
         private System.Windows.Forms.Button btnDeleteCustomer;
         private System.Windows.Forms.DataGridView dgvCustomers;
     }

@@ -19,18 +19,21 @@ namespace ProNaturGmbH
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            ProductsScreen productsScreen = new ProductsScreen();
-            productsScreen.Show();
-
+            //ProductsScreen productsScreen = new ProductsScreen();
             this.Hide();
+            new ProductsScreen().ShowDialog();
+            this.Show();
+            
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            CustomerScreen customerScreen = new CustomerScreen();
-            customerScreen.Show();
-
+            
             this.Hide();
+            new CustomerScreen().ShowDialog();
+            this.Show();
+
+            
         }
 
         private void MainMenueScreen_FormClosed(object sender, FormClosedEventArgs e)

@@ -44,6 +44,7 @@
             this.btnDeleteProduct = new System.Windows.Forms.Button();
             this.btnNewProduct = new System.Windows.Forms.Button();
             this.btnChangeProduct = new System.Windows.Forms.Button();
+            this.btnNewCategory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -240,12 +241,26 @@
             this.btnChangeProduct.UseVisualStyleBackColor = false;
             this.btnChangeProduct.Click += new System.EventHandler(this.btnChangeProduct_Click);
             // 
+            // btnNewCategory
+            // 
+            this.btnNewCategory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnNewCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewCategory.ForeColor = System.Drawing.Color.White;
+            this.btnNewCategory.Location = new System.Drawing.Point(400, 46);
+            this.btnNewCategory.Name = "btnNewCategory";
+            this.btnNewCategory.Size = new System.Drawing.Size(213, 28);
+            this.btnNewCategory.TabIndex = 13;
+            this.btnNewCategory.Text = "Kategorie hinzufügen";
+            this.btnNewCategory.UseVisualStyleBackColor = false;
+            this.btnNewCategory.Click += new System.EventHandler(this.btnNewCategory_Click);
+            // 
             // ProductsScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(799, 461);
+            this.Controls.Add(this.btnNewCategory);
             this.Controls.Add(this.btnChangeProduct);
             this.Controls.Add(this.btnNewProduct);
             this.Controls.Add(this.btnDeleteProduct);
@@ -265,7 +280,6 @@
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Produkte";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ProductsScreen_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -287,5 +301,6 @@
         private System.Windows.Forms.Button btnDeleteProduct;
         private System.Windows.Forms.Button btnNewProduct;
         private System.Windows.Forms.Button btnChangeProduct;
+        private System.Windows.Forms.Button btnNewCategory;
     }
 }
