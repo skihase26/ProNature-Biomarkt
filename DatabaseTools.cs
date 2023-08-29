@@ -134,8 +134,16 @@ namespace ProNaturGmbH
                 connection.Open();
                 sqlCommand.ExecuteNonQuery();
                 MessageBox.Show("Die Daten wurden gespeichert.");
-
-            }catch (Exception ex)
+            
+            }catch (SqlException  eSql)
+            {
+                if (eSql.ErrorCode == -2146232060)
+                    MessageBox.Show("Die Kategorie ist schon vorhanden");
+                else
+                    MessageBox.Show(eSql.Message);
+            }
+            
+            catch (Exception ex)
             {
                 MessageBox.Show("Die Daten konnten nicht in die Datenbank eingetragen werden. Bitte versuchen sie es noch einmal!");
                 Console.WriteLine(ex.Message);
