@@ -56,20 +56,23 @@ namespace ProNaturGmbH
             //proof the textfields, when one field is empty, the method return without saving
             if (!proofAllFieldsFilled()) {return;}
 
+            float productPrice;
             string[] updateInfos = GetDataFromTextfields();
+
+            if (!float.TryParse(tboProductPrice.Text, out productPrice))
+            {
+                MessageBox.Show("Sie müssen eine Zahl im Preisfeld angeben!");
+                return;
+            }
 
             //If the lastSelectedProductKey is -1, then this is a new product
             //else the product data has changed
             if (lastSelectedProductKey < 0)
             {
-                float productPrice = float.Parse(tboProductPrice.Text);
-
                 //save the datas in the products table
                 databaseTools.SaveData("products", updateInfos, productPrice);
             } else
             {
-                float productPrice = float.Parse(tboProductPrice.Text);
-
                 databaseTools.UpdateData(lastSelectedProductKey, "products", updateInfos, productPrice);
             }
                       

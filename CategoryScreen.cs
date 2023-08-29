@@ -20,6 +20,11 @@ namespace ProNaturGmbH
             databaseTools = new DatabaseTools();
         }
 
+        /// <summary>
+        /// save the new categorie only when it not already exist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveCategory_Click(object sender, EventArgs e)
         {
             string[] saveData = new string[1];

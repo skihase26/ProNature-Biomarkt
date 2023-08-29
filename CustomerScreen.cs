@@ -38,6 +38,11 @@ namespace ProNaturGmbH
             dgvCustomers.Columns[0].Visible = false;
         }
 
+        /// <summary>
+        /// save or update the data in the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveCustomer_Click(object sender, EventArgs e)
         {
             //proof the fields, when one field is empty, the method return without saving
@@ -45,6 +50,8 @@ namespace ProNaturGmbH
 
             string[]  dataToSave = GetDataFromTextfields();
 
+            //if there isn't any data selected, the data will be saved as new
+            //else the data is updated in the database
             if (lastSelectedCustomerId < 0)
             {
                 databaseTools.SaveData("Customer", dataToSave);
@@ -59,17 +66,33 @@ namespace ProNaturGmbH
             UpdateGridView();
         }
 
+        /// <summary>
+        /// clear and enable the fields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNewCustomer_Click(object sender, EventArgs e)
         {
             ClearAllFields();
             EnableFields();
         }
 
+        /// <summary>
+        /// enable the fields, when a data is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnChangeCustomer_Click(object sender, EventArgs e)
         {
-            EnableFields();
+            if(lastSelectedCustomerId > 0)
+                EnableFields();
         }
 
+        /// <summary>
+        /// delete the selected data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
             databaseTools.DeleteData(lastSelectedCustomerId, "Customer");
@@ -78,6 +101,9 @@ namespace ProNaturGmbH
             UpdateGridView();
         }
 
+        /// <summary>
+        /// enable all fields
+        /// </summary>
         private void EnableFields()
         {
             tboCustomerName.Enabled = true;
@@ -86,6 +112,9 @@ namespace ProNaturGmbH
             tboEmail.Enabled = true;
         }
 
+        /// <summary>
+        /// disable all fields
+        /// </summary>
         private void DisableFields()
         {
             tboCustomerName.Enabled = false;
@@ -94,6 +123,9 @@ namespace ProNaturGmbH
             tboEmail.Enabled = false;
         }
 
+        /// <summary>
+        /// clear all fields
+        /// </summary>
         private void ClearAllFields()
         {
             tboCustomerName.Text = string.Empty;
@@ -133,6 +165,11 @@ namespace ProNaturGmbH
             else { return true; }
         }
 
+        /// <summary>
+        /// fill the fields with the selected data and set the last selected Id
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             tboCustomerName.Text = dgvCustomers.SelectedRows[0].Cells[1].Value.ToString();
