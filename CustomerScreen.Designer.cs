@@ -76,7 +76,7 @@
             this.tboFirstName.Enabled = false;
             this.tboFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboFirstName.ForeColor = System.Drawing.Color.White;
-            this.tboFirstName.Location = new System.Drawing.Point(126, 43);
+            this.tboFirstName.Location = new System.Drawing.Point(464, 7);
             this.tboFirstName.Name = "tboFirstName";
             this.tboFirstName.Size = new System.Drawing.Size(165, 26);
             this.tboFirstName.TabIndex = 3;
@@ -87,7 +87,7 @@
             this.label1.BackColor = System.Drawing.Color.DarkGray;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 49);
+            this.label1.Location = new System.Drawing.Point(351, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 20);
             this.label1.TabIndex = 2;

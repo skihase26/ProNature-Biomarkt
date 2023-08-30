@@ -77,7 +77,7 @@ namespace ProNaturGmbH
                 
             }
 
-            ExecuteQuery(query);
+            ExecuteQuery(query, "gespeichert");
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace ProNaturGmbH
                     return;
 
             }
-            ExecuteQuery(query);
+            ExecuteQuery(query, "gespeichert");
         }
 
         /// <summary>
@@ -120,12 +120,12 @@ namespace ProNaturGmbH
                 case "customer": query = $"delete from {tableName} where CustomerId ='{id}'";
                     break;
             }
-            ExecuteQuery(query);
+            ExecuteQuery(query, "gelöscht");
         }
 
        
 
-        private void ExecuteQuery(string query)
+        private void ExecuteQuery(string query, string messagetext)
         {
             try
             {
@@ -133,19 +133,19 @@ namespace ProNaturGmbH
 
                 connection.Open();
                 sqlCommand.ExecuteNonQuery();
-                MessageBox.Show("Die Daten wurden gespeichert.");
+                MessageBox.Show($"Die Daten wurden {messagetext}.", "Information");
             
             }catch (SqlException  eSql)
             {
                 if (eSql.ErrorCode == -2146232060)
-                    MessageBox.Show("Die Kategorie ist schon vorhanden");
+                    MessageBox.Show("Die Kategorie ist schon vorhanden!", "Fehler");
                 else
-                    MessageBox.Show(eSql.Message);
+                    MessageBox.Show(eSql.Message, "Fehler");
             }
             
             catch (Exception ex)
             {
-                MessageBox.Show("Die Daten konnten nicht in die Datenbank eingetragen werden. Bitte versuchen sie es noch einmal!");
+                MessageBox.Show("Die Daten konnten nicht in die Datenbank eingetragen werden. Bitte versuchen sie es noch einmal!", "Fehler");
                 Console.WriteLine(ex.Message);
             }
             finally { connection.Close(); }

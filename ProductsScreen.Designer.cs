@@ -109,6 +109,7 @@
             this.tboProductPrice.Name = "tboProductPrice";
             this.tboProductPrice.Size = new System.Drawing.Size(110, 26);
             this.tboProductPrice.TabIndex = 5;
+            this.tboProductPrice.Leave += new System.EventHandler(this.tboProductPrice_Leave);
             // 
             // label3
             // 

@@ -29,7 +29,6 @@ namespace ProNaturGmbH
             databaseTools = new DatabaseTools();
             UpdateGridView();
             CboItemsLaden();
-            
         }
 
         /// <summary>
@@ -56,14 +55,10 @@ namespace ProNaturGmbH
             //proof the textfields, when one field is empty, the method return without saving
             if (!proofAllFieldsFilled()) {return;}
 
-            float productPrice;
+            float productPrice = float.Parse(tboProductPrice.Text);
             string[] updateInfos = GetDataFromTextfields();
 
-            if (!float.TryParse(tboProductPrice.Text, out productPrice))
-            {
-                MessageBox.Show("Sie müssen eine Zahl im Preisfeld angeben!");
-                return;
-            }
+            
 
             //If the lastSelectedProductKey is -1, then this is a new product
             //else the product data has changed
@@ -116,6 +111,55 @@ namespace ProNaturGmbH
         }
 
         /// <summary>
+        /// leave only the price field when there is a float
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tboProductPrice_Leave(object sender, EventArgs e)
+        {
+            float productPrice;
+
+            //try to parse the input of the pricefield to a float and write it to the variable,
+            //if the text can't parse to float a message will show on the screen
+            if (!float.TryParse(tboProductPrice.Text, out productPrice))
+            {
+                tboProductPrice.Select();
+                return;
+            }
+        }
+
+        /// <summary>
+        /// call the category screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNewCategory_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new CategoryScreen().ShowDialog();
+            this.Show();
+            CboItemsLaden();
+
+        }
+
+        /// <summary>
+        /// fill the textfields with datas from the selected content of the datagridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tboProductName.Text = dgvProducts.SelectedRows[0].Cells[1].Value.ToString();
+            tboProductBrand.Text = dgvProducts.SelectedRows[0].Cells[2].Value.ToString();
+            cboProductCategory.Text = dgvProducts.SelectedRows[0].Cells[3].Value.ToString();
+            tboProductPrice.Text = dgvProducts.SelectedRows[0].Cells[4].Value.ToString();
+
+            lastSelectedProductKey = (int)dgvProducts.SelectedRows[0].Cells[0].Value;
+            DisableFields();
+            //Console.WriteLine(lastSelectedProductKey);
+        }
+
+        /// <summary>
         /// enable all fields
         /// </summary>
         private void EnableFields()
@@ -165,23 +209,6 @@ namespace ProNaturGmbH
         }
 
         /// <summary>
-        /// fill the textfields with datas from the selected content of the datagridview
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            tboProductName.Text = dgvProducts.SelectedRows[0].Cells[1].Value.ToString();
-            tboProductBrand.Text = dgvProducts.SelectedRows[0].Cells[2].Value.ToString();
-            cboProductCategory.Text = dgvProducts.SelectedRows[0].Cells[3].Value.ToString();
-            tboProductPrice.Text = dgvProducts.SelectedRows[0].Cells[4].Value.ToString();
-
-            lastSelectedProductKey = (int)dgvProducts.SelectedRows[0].Cells[0].Value;
-            DisableFields();
-            //Console.WriteLine(lastSelectedProductKey);
-        }
-
-        /// <summary>
         /// get the datas from the textfields and put it into a string array
         /// </summary>
         /// <returns>textboxValues</returns>
@@ -196,15 +223,9 @@ namespace ProNaturGmbH
             return textboxValues;
         }
 
-        private void btnNewCategory_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new CategoryScreen().ShowDialog();
-            this.Show();
-            CboItemsLaden();
-
-        }
-
+        /// <summary>
+        /// load the categories from database in the combobox
+        /// </summary>
         private void CboItemsLaden()
         {
             DataSet dataSet = databaseTools.GetDataSet("categories");
@@ -219,5 +240,7 @@ namespace ProNaturGmbH
                 cboProductCategory.ValueMember = "Id";
             }
         }
+
+        
     }
 }
