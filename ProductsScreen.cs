@@ -225,6 +225,7 @@ namespace ProNaturGmbH
 
         /// <summary>
         /// load the categories from database in the combobox
+        /// 
         /// </summary>
         private void CboItemsLaden()
         {

@@ -66,7 +66,7 @@ namespace ProNaturGmbH
                 case "products": query = $"insert into {tableName} values('{dataToSave[0]}', '{dataToSave[1]}', '{dataToSave[2]}', {productPrice.ToString(CultureInfo.InvariantCulture)})";
                     break;
 
-                case "customer": query = $"insert into {tableName} values('{dataToSave[0]}', '{dataToSave[1]}', '{dataToSave[2]}', '{dataToSave[3]}')";
+                case "customer": query = $"insert into {tableName} values('{dataToSave[0]}', '{dataToSave[1]}', '{dataToSave[2]}', '{dataToSave[3]}','{dataToSave[4]}', '{dataToSave[5]}', '{dataToSave[6]}')";
                     break;
 
                 case "categories": query = $"insert into {tableName} values('{dataToSave[0]}')";
@@ -94,7 +94,7 @@ namespace ProNaturGmbH
             {
                 case "products": query = $"update {tableName} set Name='{updateData[0]}', Brand='{updateData[1]}', Category='{updateData[2]}', Price={productPrice.ToString(CultureInfo.InvariantCulture)} where Id={id}";
                     break;
-                case "customer": query = $"update {tableName} set CostumerName='{updateData[0]}', CustomerFirstName='{updateData[1]}', Address='{updateData[2]}', Email='{updateData[3]}'";
+                case "customer": query = $"update {tableName} set CostumerName='{updateData[0]}', CustomerFirstName='{updateData[1]}', Street='{updateData[2]}', HouseNo='{updateData[3]}', plz='{updateData[4]}', City='{updateData[5]}', Email='{updateData[6]}'";
                     break;
                 default: MessageBox.Show("Die Datenbanktabelle ist unbekannt. Daten konnten nicht gespeichert werden!");
                     return;

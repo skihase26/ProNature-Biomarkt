@@ -108,7 +108,10 @@ namespace ProNaturGmbH
         {
             tboCustomerName.Enabled = true;
             tboFirstName.Enabled = true;
-            tboAddress.Enabled = true;
+            tboStreet.Enabled = true;
+            tboHouseNumber.Enabled = true;
+            tboPlz.Enabled = true;
+            tboCity.Enabled = true;
             tboEmail.Enabled = true;
         }
 
@@ -119,7 +122,10 @@ namespace ProNaturGmbH
         {
             tboCustomerName.Enabled = false;
             tboFirstName.Enabled = false;
-            tboAddress.Enabled = false;
+            tboStreet.Enabled = false;
+            tboHouseNumber.Enabled = false; 
+            tboPlz.Enabled = false;
+            tboCity.Enabled = false;
             tboEmail.Enabled = false;
         }
 
@@ -130,7 +136,10 @@ namespace ProNaturGmbH
         {
             tboCustomerName.Text = string.Empty;
             tboFirstName.Text = string.Empty;
-            tboAddress.Text = string.Empty;
+            tboStreet.Text = string.Empty;
+            tboHouseNumber.Text = string.Empty;
+            tboPlz.Text = string.Empty;
+            tboCity.Text = string.Empty;
             tboEmail.Text = string.Empty;
             lastSelectedCustomerId = -1;
         }
@@ -142,11 +151,14 @@ namespace ProNaturGmbH
         private string[] GetDataFromTextfields()
         {
 
-            string[] textboxValues = new string[4];
+            string[] textboxValues = new string[7];
             textboxValues[0] = tboCustomerName.Text;
             textboxValues[1] = tboFirstName.Text;
-            textboxValues[2] = tboAddress.Text;
-            textboxValues[3] = tboEmail.Text;
+            textboxValues[2] = tboStreet.Text;
+            textboxValues[3] = tboHouseNumber.Text;
+            textboxValues[4] = tboPlz.Text;
+            textboxValues[5] = tboCity.Text;
+            textboxValues[6] = tboEmail.Text;
 
             return textboxValues;
         }
@@ -157,7 +169,9 @@ namespace ProNaturGmbH
         /// <returns></returns>
         private bool ProofAllFieldsFilled()
         {
-            if (tboCustomerName.Text == "" || tboFirstName.Text == "" || tboAddress.Text == "" || tboEmail.Text == "")
+            if (tboCustomerName.Text == "" || tboFirstName.Text == "" 
+                || tboPlz.Text == "" || tboEmail.Text == ""
+                || tboCity.Text == "" || tboStreet.Text == "" || tboHouseNumber.Text == "")
             {
                 MessageBox.Show("Bitte alle Felder ausfüllen!");
                 return false;
@@ -174,8 +188,11 @@ namespace ProNaturGmbH
         {
             tboCustomerName.Text = dgvCustomers.SelectedRows[0].Cells[1].Value.ToString();
             tboFirstName.Text = dgvCustomers.SelectedRows[0].Cells[2].Value.ToString();
-            tboAddress.Text = dgvCustomers.SelectedRows[0].Cells[3].Value.ToString();
-            tboEmail.Text = dgvCustomers.SelectedRows[0].Cells[4].Value.ToString();
+            tboStreet.Text = dgvCustomers.Rows[0].Cells[3].Value.ToString();
+            tboHouseNumber.Text = dgvCustomers.SelectedRows[0].Cells[4].Value.ToString();
+            tboPlz.Text = dgvCustomers.SelectedRows[0].Cells[5].Value.ToString();
+            tboCity.Text = dgvCustomers.SelectedRows[0].Cells[6].Value.ToString();
+            tboEmail.Text = dgvCustomers.SelectedRows[0].Cells[7].Value.ToString();
 
             lastSelectedCustomerId = (int)dgvCustomers.SelectedRows[0].Cells[0].Value;
         }
