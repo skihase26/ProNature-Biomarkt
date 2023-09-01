@@ -36,9 +36,18 @@ namespace ProNaturGmbH
             
         }
 
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new OrderScreen().ShowDialog();
+            this.Show();
+        }
+
         private void MainMenueScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
+        
     }
 }

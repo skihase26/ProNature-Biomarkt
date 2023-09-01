@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenueScreen));
             this.btnProducts = new System.Windows.Forms.Button();
-            this.btnOrder = new System.Windows.Forms.Button();
+            this.btnInvoice = new System.Windows.Forms.Button();
             this.btnCustomers = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOrder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProducts
@@ -48,17 +48,17 @@
             this.btnProducts.UseVisualStyleBackColor = true;
             this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
-            // btnOrder
+            // btnInvoice
             // 
-            this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrder.ForeColor = System.Drawing.Color.White;
-            this.btnOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnOrder.Image")));
-            this.btnOrder.Location = new System.Drawing.Point(307, 157);
-            this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(275, 125);
-            this.btnOrder.TabIndex = 1;
-            this.btnOrder.Text = "Rechnung erstellen";
-            this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvoice.ForeColor = System.Drawing.Color.White;
+            this.btnInvoice.Image = ((System.Drawing.Image)(resources.GetObject("btnInvoice.Image")));
+            this.btnInvoice.Location = new System.Drawing.Point(307, 157);
+            this.btnInvoice.Name = "btnInvoice";
+            this.btnInvoice.Size = new System.Drawing.Size(275, 125);
+            this.btnInvoice.TabIndex = 1;
+            this.btnInvoice.Text = "Rechnung erstellen";
+            this.btnInvoice.UseVisualStyleBackColor = true;
             // 
             // btnCustomers
             // 
@@ -73,18 +73,18 @@
             this.btnCustomers.UseVisualStyleBackColor = true;
             this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
             // 
-            // button1
+            // btnOrder
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(12, 157);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(275, 125);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Bestellungen";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrder.ForeColor = System.Drawing.Color.White;
+            this.btnOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnOrder.Image")));
+            this.btnOrder.Location = new System.Drawing.Point(12, 157);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(275, 125);
+            this.btnOrder.TabIndex = 3;
+            this.btnOrder.Text = "Bestellungen";
+            this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // MainMenueScreen
             // 
@@ -92,9 +92,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(596, 294);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnCustomers);
             this.Controls.Add(this.btnOrder);
+            this.Controls.Add(this.btnCustomers);
+            this.Controls.Add(this.btnInvoice);
             this.Controls.Add(this.btnProducts);
             this.Name = "MainMenueScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -107,8 +107,8 @@
         #endregion
 
         private System.Windows.Forms.Button btnProducts;
-        private System.Windows.Forms.Button btnOrder;
+        private System.Windows.Forms.Button btnInvoice;
         private System.Windows.Forms.Button btnCustomers;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOrder;
     }
 }
