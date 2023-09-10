@@ -12,12 +12,10 @@ namespace ProNaturGmbH
     {
        
         private readonly IDatabaseService _IDatabaseService;
-        private readonly string tableName;
 
         public ProductService(IDatabaseService iDatabaseService) {
     
             this._IDatabaseService = iDatabaseService;
-            tableName = "Products";
         }
 
         public void DeleteData(string query)

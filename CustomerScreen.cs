@@ -15,27 +15,18 @@ namespace ProNaturGmbH
     {
 
         private int lastSelectedCustomerId;
-        private DatabaseServices databaseTools;
+        private readonly IDatabaseService databaseService;
+        private readonly Customers customers;
+        public BindingSource dgvBinding;
 
         public CustomerScreen()
         {
             InitializeComponent();
-            databaseTools = new DatabaseServices();
             lastSelectedCustomerId = -1;
-            UpdateGridView();
-        }
-
-        /// <summary>
-        /// fill the datagridview with datas
-        /// </summary>
-        private void UpdateGridView()
-        {
-            //get all datas from the customer table
-            DataSet dataSet = databaseTools.GetDataSet("customer");
-            dgvCustomers.DataSource = dataSet.Tables[0];
-
-            //hide the CustomerId column
-            dgvCustomers.Columns[0].Visible = false;
+            databaseService = new DatabaseServices();
+            customers = new Customers(this, databaseService);
+            
+            
         }
 
         /// <summary>
@@ -54,16 +45,16 @@ namespace ProNaturGmbH
             //else the data is updated in the database
             if (lastSelectedCustomerId < 0)
             {
-                databaseTools.SaveData("Customer");
+                customers.SaveNewCustomer(dataToSave);
 
             } else
             {
-                databaseTools.UpdateData("customer");
+                customers.UpdateCustomer(lastSelectedCustomerId, dataToSave);
             }
 
             ClearAllFields();
             DisableFields();
-            UpdateGridView();
+            customers.UpdateGridView();
         }
 
         /// <summary>
@@ -95,10 +86,10 @@ namespace ProNaturGmbH
         /// <param name="e"></param>
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
-            databaseTools.DeleteData("Customer");
+            customers.DeleteCustomer(lastSelectedCustomerId);
             ClearAllFields();
             DisableFields();
-            UpdateGridView();
+            customers.UpdateGridView();
         }
 
         /// <summary>
@@ -195,6 +186,13 @@ namespace ProNaturGmbH
             tboEmail.Text = dgvCustomers.SelectedRows[0].Cells[7].Value.ToString();
 
             lastSelectedCustomerId = (int)dgvCustomers.SelectedRows[0].Cells[0].Value;
+        }
+
+        private void CustomerScreen_Load(object sender, EventArgs e)
+        {
+            dgvBinding = new BindingSource();
+            dgvCustomers.DataSource = dgvBinding;
+            customers.UpdateGridView();
         }
     }
 }

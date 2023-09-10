@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="ConnectToDb.cs" />
     <Compile Include="CreateQueries.cs" />
+    <Compile Include="Customers.cs" />
     <Compile Include="IDatabaseService.cs" />
     <Compile Include="CustomerScreen.cs">
       <SubType>Form</SubType>

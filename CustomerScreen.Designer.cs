@@ -333,6 +333,7 @@
             this.Name = "CustomerScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kunden";
+            this.Load += new System.EventHandler(this.CustomerScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -16,7 +16,7 @@ namespace ProNaturGmbH
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProductsScreen());
+            Application.Run(new CustomerScreen());
             
         }
     }
