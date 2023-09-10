@@ -13,7 +13,7 @@ namespace ProNaturGmbH
 {
     public class DatabaseServices : IDatabaseService
     {
-        private SqlConnection connection;
+        private readonly SqlConnection connection;
 
         public DatabaseServices()
         {
@@ -27,7 +27,7 @@ namespace ProNaturGmbH
         /// <returns></returns>
         public DataSet GetDataSet(string query)
         {
-            //string query = "SELECT * From " + tableName;
+            //query = "SELECT * From " + tableName;
 
             connection.Open();
 
@@ -83,9 +83,11 @@ namespace ProNaturGmbH
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
 
                 connection.Open();
-                sqlCommand.ExecuteNonQuery();
-                MessageBox.Show($"Die Daten wurden {messagetext}.", "Information");
-            
+                int data = sqlCommand.ExecuteNonQuery();
+                if (data > 0)
+                    MessageBox.Show($"Die Daten wurden {messagetext}.", "Information");
+                else
+                    MessageBox.Show($"Die Daten wurden nicht {messagetext}.", "Information");
             }catch (SqlException  eSql)
             {
                 if (eSql.ErrorCode == -2146232060)
