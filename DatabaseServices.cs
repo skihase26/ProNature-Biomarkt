@@ -11,22 +11,13 @@ using System.Windows.Forms;
 
 namespace ProNaturGmbH
 {
-    public class DatabaseTools
+    public class DatabaseServices : IDatabaseService
     {
         private SqlConnection connection;
 
-        public DatabaseTools()
+        public DatabaseServices()
         {
-            connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\Gaby\OneDrive\Dokumente\Pro-Natur Biomarkt GmbH.mdf;Integrated Security = True; Connect Timeout = 30");
-        }
-        
-        /// <summary>
-        /// you get the connection of database
-        /// </summary>
-        /// <returns></returns>
-        public SqlConnection GetConnection()
-        {
-            return connection;
+            connection = new ConnectToDb().Connection;
         }
 
         /// <summary>
@@ -34,9 +25,9 @@ namespace ProNaturGmbH
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public DataSet GetDataSet(string tableName)
+        public DataSet GetDataSet(string query)
         {
-            string query = "SELECT * From " + tableName;
+            //string query = "SELECT * From " + tableName;
 
             connection.Open();
 

@@ -20,28 +20,21 @@ namespace ProNaturGmbH
     {
   
         private int lastSelectedProductKey;
-        private readonly DatabaseTools databaseTools;
+        private readonly IDatabaseService databaseService;
+        private readonly IDatabaseService productsService;
+        private readonly Products products; 
+        public BindingSource dgvBinding;
+        
 
         public ProductsScreen()
         {
             InitializeComponent();
             lastSelectedProductKey = -1;
-            databaseTools = new DatabaseTools();
-            UpdateGridView();
-            CboItemsLaden();
-        }
+            databaseService = new DatabaseServices();
+            productsService = new ProductService(databaseService);
+            products = new Products(this, productsService);
 
-        /// <summary>
-        /// fill the gridview with actual datas from table products
-        /// </summary>
-        private void UpdateGridView()
-        {
-            //get all datas from the products table and fill the datagridview
-            DataSet dataSet = databaseTools.GetDataSet("products");
-            dgvProducts.DataSource = dataSet.Tables[0];
-
-            //hide the id column
-            dgvProducts.Columns[0].Visible = false;
+            
         }
 
         /// <summary>
@@ -65,15 +58,15 @@ namespace ProNaturGmbH
             if (lastSelectedProductKey < 0)
             {
                 //save the datas in the products table
-                databaseTools.SaveData("products", updateInfos, productPrice);
+                productsService.SaveData("products", updateInfos, productPrice);
             } else
             {
-                databaseTools.UpdateData(lastSelectedProductKey, "products", updateInfos, productPrice);
+                productsService.UpdateData(lastSelectedProductKey, "products", updateInfos, productPrice);
             }
                       
             ClearAllFields();
             DisableFields();
-            UpdateGridView();
+            products.UpdateGridView();
         }
 
         /// <summary>
@@ -104,10 +97,10 @@ namespace ProNaturGmbH
         /// <param name="e"></param>
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
-            databaseTools.DeleteData(lastSelectedProductKey, "products");
+            productsService.DeleteData(lastSelectedProductKey, "products");
 
             ClearAllFields();
-            UpdateGridView();
+            products.UpdateGridView();
         }
 
         /// <summary>
@@ -229,7 +222,7 @@ namespace ProNaturGmbH
         /// </summary>
         private void CboItemsLaden()
         {
-            DataSet dataSet = databaseTools.GetDataSet("categories");
+            DataSet dataSet = productsService.GetDataSet(new CreateQueries("categories").Query);
 
             cboProductCategory.DataSource = null;
             cboProductCategory.Items.Clear();
@@ -242,6 +235,12 @@ namespace ProNaturGmbH
             }
         }
 
-        
+        private void ProductsScreen_Load(object sender, EventArgs e)
+        {
+            dgvBinding = new BindingSource();
+            dgvProducts.DataSource = dgvBinding;
+            products.UpdateGridView();
+            CboItemsLaden();
+        }
     }
 }

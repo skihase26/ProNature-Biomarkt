@@ -15,12 +15,12 @@ namespace ProNaturGmbH
     {
 
         private int lastSelectedCustomerId;
-        private DatabaseTools databaseTools;
+        private DatabaseServices databaseTools;
 
         public CustomerScreen()
         {
             InitializeComponent();
-            databaseTools = new DatabaseTools();
+            databaseTools = new DatabaseServices();
             lastSelectedCustomerId = -1;
             UpdateGridView();
         }

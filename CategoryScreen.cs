@@ -12,12 +12,12 @@ namespace ProNaturGmbH
 {
     public partial class CategoryScreen : Form
     {
-        DatabaseTools databaseTools;
+        DatabaseServices databaseTools;
 
         public CategoryScreen()
         {
             InitializeComponent();
-            databaseTools = new DatabaseTools();
+            databaseTools = new DatabaseServices();
         }
 
         /// <summary>

@@ -52,13 +52,16 @@
     <Compile Include="CategoryScreen.Designer.cs">
       <DependentUpon>CategoryScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConnectToDb.cs" />
+    <Compile Include="CreateQueries.cs" />
+    <Compile Include="IDatabaseService.cs" />
     <Compile Include="CustomerScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CustomerScreen.Designer.cs">
       <DependentUpon>CustomerScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseTools.cs" />
+    <Compile Include="DatabaseServices.cs" />
     <Compile Include="LoadingScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +80,8 @@
     <Compile Include="OrderScreen.Designer.cs">
       <DependentUpon>OrderScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Products.cs" />
+    <Compile Include="ProductService.cs" />
     <Compile Include="ProductsScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +117,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\CategoryScreen.datasource" />
+    <None Include="Properties\DataSources\CustomerScreen.datasource" />
+    <None Include="Properties\DataSources\LoadingScreen.datasource" />
+    <None Include="Properties\DataSources\MainMenueScreen.datasource" />
+    <None Include="Properties\DataSources\OrderScreen.datasource" />
+    <None Include="Properties\DataSources\Products.datasource" />
+    <None Include="Properties\DataSources\ProductsScreen.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\ProNaturGmbH.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\ProNaturGmbH.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,6 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
