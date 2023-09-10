@@ -20,9 +20,9 @@ namespace ProNaturGmbH
             tableName = "Products";
         }
 
-        public void DeleteData(int id, string tableName)
+        public void DeleteData(string query)
         {
-            _IDatabaseService.DeleteData(id, tableName);
+            _IDatabaseService.DeleteData(query);
         }
 
         public DataSet GetDataSet(string query)
@@ -31,14 +31,14 @@ namespace ProNaturGmbH
             return dataSet;
         }
 
-        public void SaveData(string tablename, string[] dataToSave, float productPrice = 0)
+        public void SaveData(string query)
         {
-            _IDatabaseService.SaveData(tablename, dataToSave, productPrice);
+            _IDatabaseService.SaveData(query);
         }
 
-        public void UpdateData(int id, string tableName, string[] updateData, float productPrice = 0)
+        public void UpdateData(string query)
         {
-            _IDatabaseService.UpdateData(id, tableName, updateData, productPrice);
+            _IDatabaseService.UpdateData(query);
         }
     }
 }

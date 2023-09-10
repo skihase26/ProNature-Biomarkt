@@ -47,27 +47,8 @@ namespace ProNaturGmbH
         /// <param name="tableName">table name of database</param>
         /// <param name="dataToSave">data array (name, brand, category) inserting in the table</param>
         /// <param name="productPrice"></param>
-        public void SaveData(string tableName, string[] dataToSave, float productPrice=0)
+        public void SaveData(string query)
         {
-            string query = "";
-            tableName = tableName.ToLower();
-
-            switch (tableName)
-            {
-                case "products": query = $"insert into {tableName} values('{dataToSave[0]}', '{dataToSave[1]}', '{dataToSave[2]}', {productPrice.ToString(CultureInfo.InvariantCulture)})";
-                    break;
-
-                case "customer": query = $"insert into {tableName} values('{dataToSave[0]}', '{dataToSave[1]}', '{dataToSave[2]}', '{dataToSave[3]}','{dataToSave[4]}', '{dataToSave[5]}', '{dataToSave[6]}')";
-                    break;
-
-                case "categories": query = $"insert into {tableName} values('{dataToSave[0]}')";
-                    break;
-
-                default: MessageBox.Show("Die Datenbanktabelle ist unbekannt. Daten konnten nicht gespeichert werden!");
-                    return;
-                
-            }
-
             ExecuteQuery(query, "gespeichert");
         }
 
@@ -78,19 +59,8 @@ namespace ProNaturGmbH
         /// <param name="tableName">where will update the data</param>
         /// <param name="updateData">data array (name, brand, category) for updating</param>
         /// <param name="productPrice"></param>
-        public void UpdateData(int id, string tableName, string[] updateData, float productPrice=0)
+        public void UpdateData(string query)
         {
-            string query = "";
-            switch (tableName)
-            {
-                case "products": query = $"update {tableName} set Name='{updateData[0]}', Brand='{updateData[1]}', Category='{updateData[2]}', Price={productPrice.ToString(CultureInfo.InvariantCulture)} where Id={id}";
-                    break;
-                case "customer": query = $"update {tableName} set CostumerName='{updateData[0]}', CustomerFirstName='{updateData[1]}', Street='{updateData[2]}', HouseNo='{updateData[3]}', plz='{updateData[4]}', City='{updateData[5]}', Email='{updateData[6]}'";
-                    break;
-                default: MessageBox.Show("Die Datenbanktabelle ist unbekannt. Daten konnten nicht gespeichert werden!");
-                    return;
-
-            }
             ExecuteQuery(query, "gespeichert");
         }
 
@@ -99,18 +69,8 @@ namespace ProNaturGmbH
         /// </summary>
         /// <param name="id"></param>
         /// <param name="tableName"></param>
-        public void DeleteData(int id, string tableName)
+        public void DeleteData(string query)
         {
-            string query = "";
-
-            tableName = tableName.ToLower();
-
-            switch (tableName) {
-                case "products": query = $"delete from {tableName} where Id ='{id}'";
-                    break;
-                case "customer": query = $"delete from {tableName} where CustomerId ='{id}'";
-                    break;
-            }
             ExecuteQuery(query, "gelöscht");
         }
 

@@ -10,8 +10,8 @@ namespace ProNaturGmbH
     public interface IDatabaseService
     {
         DataSet GetDataSet(string query);
-        void SaveData(string tablename, string[] dataToSave, float productPrice=0);
-        void UpdateData(int id, string tableName, string[] updateData, float productPrice = 0);
-        void DeleteData(int id, string tableName);
+        void SaveData(string query);
+        void UpdateData(string query);
+        void DeleteData(string query);
     }
 }

@@ -33,5 +33,20 @@ namespace ProNaturGmbH
             _ProductsScreen.dgvBinding.DataSource = dataSet.Tables[0];
             
         }
+
+        public void DeleteProduct(int id)
+        {
+            _IDatabaseService.DeleteData(new CreateQueries(id, "Products").Query);
+        }
+
+        public void SaveNewProduct(string[] dataTextControls, float price) 
+        {
+            _IDatabaseService.SaveData(new CreateQueries(dataTextControls, price, "Products").Query);
+        }
+
+        public void UpdateProduct(int id, string[] dataTextControls, float price) 
+        {
+            _IDatabaseService.UpdateData(new CreateQueries(id, dataTextControls, price, "Products").Query);
+        }
     }
 }

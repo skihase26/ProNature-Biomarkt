@@ -58,10 +58,10 @@ namespace ProNaturGmbH
             if (lastSelectedProductKey < 0)
             {
                 //save the datas in the products table
-                productsService.SaveData("products", updateInfos, productPrice);
+                products.SaveNewProduct(updateInfos, productPrice);
             } else
             {
-                productsService.UpdateData(lastSelectedProductKey, "products", updateInfos, productPrice);
+                products.UpdateProduct(lastSelectedProductKey, updateInfos, productPrice);
             }
                       
             ClearAllFields();
@@ -97,7 +97,7 @@ namespace ProNaturGmbH
         /// <param name="e"></param>
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
-            productsService.DeleteData(lastSelectedProductKey, "products");
+            products.DeleteProduct(lastSelectedProductKey);
 
             ClearAllFields();
             products.UpdateGridView();
@@ -195,7 +195,7 @@ namespace ProNaturGmbH
         {
             if (tboProductName.Text == "" || tboProductBrand.Text == "" || tboProductPrice.Text == "" || cboProductCategory.Text == "")
             {
-                MessageBox.Show("Bitte alle Felder ausfüllen und der Preis darf nicht 0 sein!");
+                MessageBox.Show("Bitte alle Felder ausfüllen!");
                 return false;
             }
             else { return true; }

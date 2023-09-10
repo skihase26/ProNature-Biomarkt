@@ -54,11 +54,11 @@ namespace ProNaturGmbH
             //else the data is updated in the database
             if (lastSelectedCustomerId < 0)
             {
-                databaseTools.SaveData("Customer", dataToSave);
+                databaseTools.SaveData("Customer");
 
             } else
             {
-                databaseTools.UpdateData(lastSelectedCustomerId, "customer", dataToSave);
+                databaseTools.UpdateData("customer");
             }
 
             ClearAllFields();
@@ -95,7 +95,7 @@ namespace ProNaturGmbH
         /// <param name="e"></param>
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
-            databaseTools.DeleteData(lastSelectedCustomerId, "Customer");
+            databaseTools.DeleteData("Customer");
             ClearAllFields();
             DisableFields();
             UpdateGridView();

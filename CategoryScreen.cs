@@ -12,12 +12,12 @@ namespace ProNaturGmbH
 {
     public partial class CategoryScreen : Form
     {
-        DatabaseServices databaseTools;
+        DatabaseServices databaseService;
 
         public CategoryScreen()
         {
             InitializeComponent();
-            databaseTools = new DatabaseServices();
+            databaseService = new DatabaseServices();
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace ProNaturGmbH
         {
             string[] saveData = new string[1];
             saveData[0] = tboCategoryName.Text;
-            databaseTools.SaveData("Categories", saveData);
+            databaseService.SaveData("Categories");
         }
     }
 }
