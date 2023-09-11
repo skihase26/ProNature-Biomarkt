@@ -4,23 +4,22 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ProNaturGmbH
 {
-    internal class Customers
+    internal class Categories
     {
-        private CustomerScreen _CustomerScreen;
-        private IDatabaseService _IDatabaseService;
+        private readonly CategoryScreen _CategoryScreen;
+        private readonly IDatabaseService _IDatabaseService;
         private DataSet dataSet;
         private string tableName;
 
-        public Customers(CustomerScreen customerScreen, IDatabaseService databaseServices) 
+        public Categories (CategoryScreen categoryScreen, IDatabaseService iDatabaseService)
         {
-            this._CustomerScreen = customerScreen;
-            this._IDatabaseService = databaseServices;
-            dataSet = new DataSet();
-            tableName = "Customer";
+            this._CategoryScreen = categoryScreen;
+            this._IDatabaseService = iDatabaseService;
+            this.dataSet = new DataSet();
+            this.tableName = "Categories";
         }
 
         /// <summary>
@@ -31,21 +30,16 @@ namespace ProNaturGmbH
 
             //get all datas from the products table and fill the datagridview
             dataSet = _IDatabaseService.GetDataSet(new CreateQueries(tableName).Query);
-            _CustomerScreen.dgvBinding.DataSource = dataSet.Tables[0];
+            _CategoryScreen.dgvBinding.DataSource = dataSet.Tables[0];
 
         }
 
-        public void DeleteCustomer(int id)
-        {
-            _IDatabaseService.DeleteData(new CreateQueries(id, tableName).Query);
-        }
-
-        public void SaveNewCustomer(string[] dataTextControls)
+        public void SaveNewCategory(string[] dataTextControls)
         {
             _IDatabaseService.SaveData(new CreateQueries(dataTextControls, 0, tableName).Query);
         }
 
-        public void UpdateCustomer(int id, string[] dataTextControls)
+        public void UpdateCategory(int id, string[] dataTextControls)
         {
             _IDatabaseService.UpdateData(new CreateQueries(id, dataTextControls, 0, tableName).Query);
         }
