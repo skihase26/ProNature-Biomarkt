@@ -67,6 +67,7 @@ namespace ProNaturGmbH
             ClearAllFields();
             DisableFields();
             products.UpdateGridView();
+            dgvProducts.Columns[0].Visible = false;
         }
 
         /// <summary>
@@ -101,6 +102,7 @@ namespace ProNaturGmbH
 
             ClearAllFields();
             products.UpdateGridView();
+            dgvProducts.Columns[0].Visible = false;
         }
 
         /// <summary>
@@ -240,6 +242,7 @@ namespace ProNaturGmbH
             dgvBinding = new BindingSource();
             dgvProducts.DataSource = dgvBinding;
             products.UpdateGridView();
+            dgvProducts.Columns[0].Visible = false;
             CboItemsLaden();
         }
     }

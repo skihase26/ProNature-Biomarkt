@@ -13,7 +13,7 @@ namespace ProNaturGmbH
 
         public ConnectToDb()
         {
-            Connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\Gaby\OneDrive\Dokumente\Pro-Natur Biomarkt GmbH.mdf;Integrated Security = True; Connect Timeout = 30");
+            Connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Gaby\ProNatureBiomartGmbH.mdf;Integrated Security=True;Connect Timeout=30");
         }
     }
 }
